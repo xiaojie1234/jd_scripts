@@ -90,14 +90,14 @@ async function jdJxStory() {
     await upgrade();
   }
   await cardList()
-  if ($.isNode()) {
-    $.click = true;
-    while($.click){
-      await increase()
-    }
-  } else {
-    await increase()
-  }
+//   if ($.isNode()) {
+//     $.click = true;
+//     while($.click){
+//       await increase()
+//     }
+//   } else {
+//     await increase()
+//   }
 }
 // 签到
 function sign() {
