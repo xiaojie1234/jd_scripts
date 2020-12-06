@@ -83,7 +83,7 @@ if ($.isNode()) {
 
 async function jdJxStory() {
   await userInfo()
-//   await helpFriends()
+  await helpFriends()
   await sign()
   await taskList()
   for(let i =0;i<Math.trunc($.currentMoneyNum/20000);++i){
