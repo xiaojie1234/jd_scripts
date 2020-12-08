@@ -69,7 +69,7 @@ inputs:
           name: bean_change_rankingList_bean_home_car
           cronExpression: "0 0 10 * * * *"
           enable: true
-          argument: jd_bean_change&jd_rankingList&jd_bean_home&jd_car
+          argument: jd_bean_change&jd_rankingList&jd_bean_home&jd_car&jd_joy_run&jd_split&jd_jxstory
     - timer: # 金融养猪#十元街# 京东快递
         parameters:
           name: pigPet_syj_kd
