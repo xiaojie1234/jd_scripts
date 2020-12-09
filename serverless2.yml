@@ -18,7 +18,7 @@ inputs:
   events: # 触发器
     - timer: # 签到
         parameters:
-          name: jd_bean_sign
+          name: jd_bean_sign_custom
           cronExpression: "0 0 0,7 * * * *"
           enable: true
           argument: jd_bean_sign
