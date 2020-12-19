@@ -44,7 +44,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '';
-let isPurchaseShops = true;//是否一键加购商品到购物车，默认不加购
+let isPurchaseShops = false;//是否一键加购商品到购物车，默认不加购
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
