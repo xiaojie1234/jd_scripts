@@ -7,9 +7,11 @@ exports.main_handler = async (event, context, callback) => {
       console.log(v);
       var request = require('request');
       //1.执行自己上传的js文件
-      if(v == "jd_jxstory" || v == "jd_joy_run" || v == "jd_split" || v == "jd_health") {
-        delete require.cache[require.resolve('./'+v+'.js')];
-        require('./'+v+'.js')
+      //v == "jd_bean_home" || 
+      if(v == "jd_jdh" || v == "jd_jdzz" || v == "jd_joy_run" || v == "jd_health"){
+        request('https://raw.githubusercontent.com/xiaojie1234/jd_scripts/master/' + v + '.js', function (error, response, body) {
+          eval(response.body)
+        })
       } else {
         request('https://raw.githubusercontent.com/lxk0301/jd_scripts/master/' + v + '.js', function (error, response, body) {
           eval(response.body)
