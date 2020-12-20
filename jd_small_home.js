@@ -94,8 +94,10 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       if ($.newShareCodes.length > 1) {
-        let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]
-        console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}助力\n`)
+        // let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]
+        //console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}助力\n`)
+        let code = $.newShareCodes[0]
+        console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}助力\n`)
         await createAssistUser(code, $.createAssistUserID || "1318106976846299138");
       }
       console.log(`\n去帮助作者:lxk0301\n`)
