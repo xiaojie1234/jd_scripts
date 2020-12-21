@@ -81,7 +81,7 @@ let qqreadtimeheaderVal = $.getdata(qqreadtimeheaderKey)
 //云函数使用在下面填写
 let QQ_READ_COOKIES = [
   {
-    "qqreadbodyVal": ``,
+    "qqreadbodyVal": `ywguid=984065792;ywkey=ywiUrYQLdHgn;platform=android;channel=mqqmina;mpVersion=0.36.0`,
     "qqreadtimeurlVal": ``,
     "qqreadtimeheaderVal": ``
   }
