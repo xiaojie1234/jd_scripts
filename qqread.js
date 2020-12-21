@@ -81,14 +81,11 @@ let qqreadtimeheaderVal = $.getdata(qqreadtimeheaderKey)
 //云函数使用在下面填写
 let QQ_READ_COOKIES = [
   {
-    "qqreadbodyVal": "ywguid=984065792;ywkey=ywiUrYQLdHgn;platform=android;channel=mqqmina;mpVersion=0.36.0;qq_ver=8.4.18.4945;os_ver=Android 9;mpos_ver=1.21.0",
-    "qqreadtimeurlVal": "https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=1011&refer=pages%2Fbook-category%2Findex&bid=23406185&readTime=3618&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A3618%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1",
-    "qqreadtimeheaderVal": "ywguid=984065792;ywkey=ywiUrYQLdHgn;platform=android;channel=mqqmina;mpVersion=0.36.0;qq_ver=8.4.18.4945;os_ver=Android 9;mpos_ver=1.21.0;platform=android;openid=F4D0FD64A028009CC84A46B8693E3415"
+    "qqreadbodyVal": ``,
+    "qqreadtimeurlVal": ``,
+    "qqreadtimeheaderVal": ``
   }
 ]
-// let QQ_READ_COOKIES = [
-  
-// ]
 function getNodeCookie() {
   if ($.isNode()) {
     let QQ_READ_BODY_VAL = [], QQ_READ_TIME_URL_VAL = [], QQ_READ_TIME_HEADER_VAL = [];
@@ -146,7 +143,7 @@ if (isGetCookie) {
   GetCookie()
 } else {
   !(async () => {
-    // await getNodeCookie();
+    await getNodeCookie();
     await QQ_READ();
     // await all();
   })()
