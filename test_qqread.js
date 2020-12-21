@@ -87,11 +87,7 @@ let qqreadtimeheaderVal = $.getdata(qqreadtimeheaderKey)
 //   }
 // ]
 let QQ_READ_COOKIES = [
-  {
-    "qqreadbodyVal": "",
-    "qqreadtimeurlVal": "",
-    "qqreadtimeheaderVal": ""
-  }
+  
 ]
 function getNodeCookie() {
   if ($.isNode()) {
