@@ -103,7 +103,7 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
         } else {
           console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}助力\n`)
         }
-        console.log("code:${code}  createAssistUserID:${$.createAssistUserID}")
+        console.log(`code:${code}  createAssistUserID:${$.createAssistUserID}`)
         await createAssistUser(code, $.createAssistUserID);
         // await createAssistUser(code, $.createAssistUserID || "1318106976846299138");
       }
