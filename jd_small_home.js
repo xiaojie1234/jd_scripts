@@ -43,7 +43,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
-let cookiesArr = [], cookie = '', message = '';
+let cookiesArr = ["pt_key=AAJfuf6VADAacIhuQ0xNXpxNNuPTJlP28WEHBga_B3wVVCwNZtNVEKhNMWzldoQQtlsdILPghwI;pt_pin=w13232321958;","pt_key=AAJfugfaADAKVJ5kvEI_s884BlEyB-IYMGQljzK6BzsL4N0Va3f6e3s58x5ANvKjwpjsqC028sY;pt_pin=jd_SoRjNkxDpBkO;","pt_key=AAJfuh6sADBljxT8ct5q8V2jXS3Tfl6dGH4F8bDsSstKcSOGYVWl7rmtez0uN0vQMZiOiKEcQGQ;pt_pin=jd_4da84abe571f3;","pt_key=AAJfykw9ADBm9Ixc6zHHGQP6Ae0_TTdsIfqyR_tHyi8D5oVcmhVDiRZv5YgYAUDyhEuFS8mAN88;pt_pin=jd_44b4c12a07358;"], cookie = '', message = '';
 let isPurchaseShops = true;//是否一键加购商品到购物车，默认不加购
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
