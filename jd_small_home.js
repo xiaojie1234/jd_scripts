@@ -100,9 +100,15 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
         // console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}助力\n`)
         // $.log(`自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code}`)
         let code = $.newShareCodes[0]['code']
-        console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}助力\n`)
+        if(i == 0) {
+          code = $.newShareCodes[1]['code']
+          console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[1].match(/pt_pin=(.+?);/) && cookiesArr[1].match(/pt_pin=(.+?);/)[1])}助力\n`)
+          $.log(`自己的下一账号${decodeURIComponent(cookiesArr[1].match(/pt_pin=(.+?);/) && cookiesArr[1].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
+        } else {
+          console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}助力\n`)
+          $.log(`自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
+        }
         
-        $.log(`自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
         await createAssistUser(code, $.createAssistUserID);
       }
       // console.log(`\n去帮助作者:lxk0301\n`)
