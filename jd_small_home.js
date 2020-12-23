@@ -44,7 +44,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '';
-let isPurchaseShops = false;//是否一键加购商品到购物车，默认不加购
+let isPurchaseShops = true;//是否一键加购商品到购物车，默认不加购
 $.helpToken = [];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -96,13 +96,23 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
       $.token = $.helpToken[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       if ($.newShareCodes.length > 1) {
-        console.log('----', (i + 1) % $.newShareCodes.length)
-        let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]['code']
-        console.log(`\n${$.UserName} 去给自己的下一账号 ${decodeURIComponent($.newShareCodes[(i + 1) % $.newShareCodes.length]['cookie'].match(/pt_pin=(.+?);/) && $.newShareCodes[(i + 1) % $.newShareCodes.length]['cookie'].match(/pt_pin=(.+?);/)[1])}助力，助力码为 ${code}\n`)
+//         console.log('----', (i + 1) % $.newShareCodes.length)
+//         let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]['code']
+//         console.log(`\n${$.UserName} 去给自己的下一账号 ${decodeURIComponent($.newShareCodes[(i + 1) % $.newShareCodes.length]['cookie'].match(/pt_pin=(.+?);/) && $.newShareCodes[(i + 1) % $.newShareCodes.length]['cookie'].match(/pt_pin=(.+?);/)[1])}助力，助力码为 ${code}\n`)
+        let code = $.newShareCodes[0]['code']
+        if(i == 0) {
+          code = $.newShareCodes[1]['code']
+          console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[1].match(/pt_pin=(.+?);/) && cookiesArr[1].match(/pt_pin=(.+?);/)[1])}助力\n`)
+          $.log(`自己的下一账号${decodeURIComponent(cookiesArr[1].match(/pt_pin=(.+?);/) && cookiesArr[1].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
+        } else {
+          console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}助力\n`)
+          $.log(`自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
+          console.log(`\n${$.UserName} 去给自己的下一账号 ${decodeURIComponent($.newShareCodes[0]['cookie'].match(/pt_pin=(.+?);/) && $.newShareCodes[0]['cookie'].match(/pt_pin=(.+?);/)[1])}助力，助力码为 ${code}\n`)
+        }
         await createAssistUser(code, $.createAssistUserID);
       }
-      console.log(`\n去帮助作者:lxk0301\n`)
-      await helpFriends();
+//       console.log(`\n去帮助作者:lxk0301\n`)
+//       await helpFriends();
     }
   }
 })()
@@ -150,13 +160,13 @@ async function doChannelsListTask(taskId, taskType) {
   }
 }
 async function helpFriends() {
-  await updateInviteCode();
-  if (!$.inviteCodes) await updateInviteCodeCDN();
-  if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
-  for (let item of $.inviteCodes.inviteCode) {
-    if (!item) continue
-    await createAssistUser(item, $.createAssistUserID);
-  }
+//   await updateInviteCode();
+//   if (!$.inviteCodes) await updateInviteCodeCDN();
+//   if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
+//   for (let item of $.inviteCodes.inviteCode) {
+//     if (!item) continue
+//     await createAssistUser(item, $.createAssistUserID);
+//   }
 }
 async function doAllTask() {
   await queryAllTaskInfo();//获取任务详情列表$.taskList
