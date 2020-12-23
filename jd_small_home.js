@@ -43,11 +43,9 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
-// let cookiesArr = ["pt_key=AAJfuf6VADAacIhuQ0xNXpxNNuPTJlP28WEHBga_B3wVVCwNZtNVEKhNMWzldoQQtlsdILPghwI;pt_pin=w13232321958;","pt_key=AAJfugfaADAKVJ5kvEI_s884BlEyB-IYMGQljzK6BzsL4N0Va3f6e3s58x5ANvKjwpjsqC028sY;pt_pin=jd_SoRjNkxDpBkO;","pt_key=AAJfuh6sADBljxT8ct5q8V2jXS3Tfl6dGH4F8bDsSstKcSOGYVWl7rmtez0uN0vQMZiOiKEcQGQ;pt_pin=jd_4da84abe571f3;","pt_key=AAJfykw9ADBm9Ixc6zHHGQP6Ae0_TTdsIfqyR_tHyi8D5oVcmhVDiRZv5YgYAUDyhEuFS8mAN88;pt_pin=jd_44b4c12a07358;"], cookie = '', message = '';
 let cookiesArr = [], cookie = '', message = '';
-let isPurchaseShops = true;//是否一键加购商品到购物车，默认不加购
+let isPurchaseShops = false;//是否一键加购商品到购物车，默认不加购
 $.helpToken = [];
-
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -98,23 +96,13 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
       $.token = $.helpToken[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       if ($.newShareCodes.length > 1) {
-        //let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]['code']
-        // console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}助力\n`)
-        // $.log(`自己的下一账号${decodeURIComponent(cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/) && cookiesArr[(i + 1) % $.newShareCodes.length].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code}`)
-        let code = $.newShareCodes[0]['code']
-        if(i == 0) {
-          code = $.newShareCodes[1]['code']
-          console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[1].match(/pt_pin=(.+?);/) && cookiesArr[1].match(/pt_pin=(.+?);/)[1])}助力\n`)
-          $.log(`自己的下一账号${decodeURIComponent(cookiesArr[1].match(/pt_pin=(.+?);/) && cookiesArr[1].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
-        } else {
-          console.log(`\n${$.UserName}去给自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}助力\n`)
-          $.log(`自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
-          console.log(`\n${$.UserName} 去给自己的下一账号 ${decodeURIComponent($.newShareCodes[0]['cookie'].match(/pt_pin=(.+?);/) && $.newShareCodes[0]['cookie'].match(/pt_pin=(.+?);/)[1])}助力，助力码为 ${code}\n`)
-        }
+        console.log('----', (i + 1) % $.newShareCodes.length)
+        let code = $.newShareCodes[(i + 1) % $.newShareCodes.length]['code']
+        console.log(`\n${$.UserName} 去给自己的下一账号 ${decodeURIComponent($.newShareCodes[(i + 1) % $.newShareCodes.length]['cookie'].match(/pt_pin=(.+?);/) && $.newShareCodes[(i + 1) % $.newShareCodes.length]['cookie'].match(/pt_pin=(.+?);/)[1])}助力，助力码为 ${code}\n`)
         await createAssistUser(code, $.createAssistUserID);
       }
-      // console.log(`\n去帮助作者:lxk0301\n`)
-      // await helpFriends();
+      console.log(`\n去帮助作者:lxk0301\n`)
+      await helpFriends();
     }
   }
 })()
@@ -162,13 +150,13 @@ async function doChannelsListTask(taskId, taskType) {
   }
 }
 async function helpFriends() {
-  // await updateInviteCode();
-  // if (!$.inviteCodes) await updateInviteCodeCDN();
-  // if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
-  // for (let item of $.inviteCodes.inviteCode) {
-  //   if (!item) continue
-  //   await createAssistUser(item, $.createAssistUserID);
-  // }
+  await updateInviteCode();
+  if (!$.inviteCodes) await updateInviteCodeCDN();
+  if (!$.inviteCodes) await updateInviteCodeCDN('https://gitee.com/lxk0301/updateTeam/raw/master/jd_updateSmallHomeInviteCode.json');
+  for (let item of $.inviteCodes.inviteCode) {
+    if (!item) continue
+    await createAssistUser(item, $.createAssistUserID);
+  }
 }
 async function doAllTask() {
   await queryAllTaskInfo();//获取任务详情列表$.taskList
