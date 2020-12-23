@@ -111,8 +111,6 @@ const JD_API_HOST = 'https://lkyl.dianpusoft.cn/api';
           $.log(`自己的下一账号${decodeURIComponent(cookiesArr[0].match(/pt_pin=(.+?);/) && cookiesArr[0].match(/pt_pin=(.+?);/)[1])}，助力码为 ${code} --assistUserId ${$.createAssistUserID}`)
           console.log(`\n${$.UserName} 去给自己的下一账号 ${decodeURIComponent($.newShareCodes[0]['cookie'].match(/pt_pin=(.+?);/) && $.newShareCodes[0]['cookie'].match(/pt_pin=(.+?);/)[1])}助力，助力码为 ${code}\n`)
         }
-        
-
         await createAssistUser(code, $.createAssistUserID);
       }
       // console.log(`\n去帮助作者:lxk0301\n`)
