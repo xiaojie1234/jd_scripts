@@ -24,10 +24,8 @@ const $ = new Env('京东赚赚');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-
-let helpAuthor=false; // 帮助作者
+let helpAuthor=true; // 帮助作者
 const randomCount = 5;
-
 let jdNotify = true; // 是否关闭通知，false打开通知推送，true关闭通知推送
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
@@ -56,8 +54,8 @@ const inviteCodes = [
 !(async () => {
   $.tuanList = []
   await requireConfig();
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/shylocks/updateTeam/raw/main/jd_zz.json');
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/lxk0301/updateTeam/raw/master/jd_zz.json');
+  // if (helpAuthor) await getAuthorShareCode('https://gitee.com/shylocks/updateTeam/raw/main/jd_zz.json');
+  // if (helpAuthor) await getAuthorShareCode('https://gitee.com/lxk0301/updateTeam/raw/master/jd_zz.json');
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
     return;
@@ -386,19 +384,16 @@ function requireConfig() {
   return new Promise(resolve => {
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
-    const shareCodes = [ "AUWE5_PLyl0tTQBS4ryc1@AUWE5m_nBxTFZWjX92n0clg@AUWE5m6nCyWYJCjH42n9PnQ",
-  "ATDRVna6SzjcJAWXw@AUWE5m_nBxTFZWjX92n0clg@AUWE5m6nCyWYJCjH42n9PnQ",
-  "ATDRVna6SzjcJAWXw@AUWE5_PLyl0tTQBS4ryc1@AUWE5m6nCyWYJCjH42n9PnQ",]
-    // let shareCodes = [];
-    // if ($.isNode()) {
-    //   if (process.env.JDZZ_SHARECODES) {
-    //     if (process.env.JDZZ_SHARECODES.indexOf('\n') > -1) {
-    //       shareCodes = process.env.JDZZ_SHARECODES.split('\n');
-    //     } else {
-    //       shareCodes = process.env.JDZZ_SHARECODES.split('&');
-    //     }
-    //   }
-    // }
+    const shareCodes = []
+    if ($.isNode()) {
+      if (process.env.JDZZ_SHARECODES) {
+        if (process.env.JDZZ_SHARECODES.indexOf('\n') > -1) {
+          shareCodes = process.env.JDZZ_SHARECODES.split('\n');
+        } else {
+          shareCodes = process.env.JDZZ_SHARECODES.split('&');
+        }
+      }
+    }
     console.log(`共${cookiesArr.length}个京东账号\n`);
     $.shareCodesArr = [];
     if ($.isNode()) {
