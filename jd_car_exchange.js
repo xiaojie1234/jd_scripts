@@ -1,7 +1,11 @@
 /*
 京东汽车兑换，500赛点兑换500京豆
 长期活动
-活动入口：首页👉京东汽车兑换👉屏幕右中部，车主福利
+
+活动入口
+京东APP：首页👉京东汽车兑换👉屏幕右中部，车主福利
+活动网页地址：https://h5.m.jd.com/babelDiy/Zeus/44bjzCpzH9GpspWeBzYSqBA7jEtP/index.html#/journey
+
 更新地址：https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_car_exchange
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
@@ -47,7 +51,7 @@ if ($.isNode()) {
 const JD_API_HOST = 'https://car-member.jd.com/api/';
 !(async () => {
   if (!cookiesArr[0]) {
-    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
+    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
   for (let j = 0; j < 20; ++j)
